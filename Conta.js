@@ -37,4 +37,8 @@ export class Conta{
         conta.depositar(valorSacado);
         conta.novo = "novo";
     }
+
+    teste(){
+        console.log("teste na classe conta");
+    }
 }
