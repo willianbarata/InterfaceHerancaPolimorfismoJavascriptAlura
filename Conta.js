@@ -1,9 +1,8 @@
 export class Conta{
-    constructor(tipo,saldoInicial, cliente, agencia){
+    constructor(saldoInicial, cliente, agencia){
         this._saldo = saldoInicial;
         this._cliente = cliente;
         this._agencia = agencia;
-        this._tipo = tipo;
     }
 
     set cliente(novoValor){
@@ -21,16 +20,8 @@ export class Conta{
     }
 
     sacar(valor){
-        let valor = 1;
-        if(this._tipo == "corrente"){
-            valor = 1.1;
-        }
-        if(this._tipo == "salario"){
-            valor = 1.05;
-        }
-        if(this._tipo == "empresarial"){
-            valor = 1.15;
-        }
+        let taxa = 1;
+        
         const valorSacado = taxa * valor;
         if(this._saldo >= valorSacado){
             this._saldo -= valorSacado;
@@ -39,17 +30,10 @@ export class Conta{
     }
 
     depositar(valor){
-        if(valor <= 0){
-            return;
-        }
         this._saldo += valor;
     }
 
     transferir(valor, conta){
-        if(this._tipo == "salario"){
-           return;
-        }
-        const valorSacado = this.sacar(valor);
         conta.depositar(valorSacado);
         conta.novo = "novo";
     }
