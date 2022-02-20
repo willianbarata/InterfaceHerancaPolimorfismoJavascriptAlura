@@ -5,7 +5,7 @@ export class Conta{
         this._agencia = agencia;
         console.log(this.constructor);
         if(this.constructor == Conta){
-            console.log("Você não deveria instanciar essa conta");
+            throw new Error("Você não deveria instanciar essa conta");
         }
     }
 
